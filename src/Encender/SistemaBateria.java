@@ -41,7 +41,7 @@ public class SistemaBateria {
 }
     
     public void cargarBateria(){
-        if (nivelBateria<100) {
+        if (nivelBateria<100&&!carro.isEncendido()) {
             nivelBateria=nivelBateria+0.5;
         }else if (nivelBateria>=100) {
             nivelBateria=100;
