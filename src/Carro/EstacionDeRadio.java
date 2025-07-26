@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Encender;
+package Carro;
 
 /**
  *
@@ -10,7 +10,7 @@ package Encender;
  */
 public class EstacionDeRadio {
     private boolean encendido=true;
-    private Encender encender;
+    private Encendido encender;
     private SistemaBateria bateria;
     private AlarmaYBloqueo alarma;
     private ModosRadio modoRadioActual=ModosRadio.FM;
@@ -45,7 +45,7 @@ public class EstacionDeRadio {
         }
     }
 
-    public EstacionDeRadio(Encender encender, SistemaBateria bateria, AlarmaYBloqueo alarma) {
+    public EstacionDeRadio(Encendido encender, SistemaBateria bateria, AlarmaYBloqueo alarma) {
         this.encender = encender;
         this.bateria = bateria;
         this.alarma = alarma;

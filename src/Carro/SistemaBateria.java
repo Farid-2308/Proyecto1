@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Encender;
+package Carro;
 
 /**
  *
@@ -10,7 +10,7 @@ package Encender;
  */
 public class SistemaBateria {
     private double nivelBateria=100;
-    private Encender carro;
+    private Encendido carro;
 
     public double getNivelBateria() {
         return nivelBateria;
@@ -48,7 +48,7 @@ public class SistemaBateria {
         }
     }
 
-    public SistemaBateria(Encender carro) {
+    public SistemaBateria(Encendido carro) {
         this.carro = carro;
     }
 }

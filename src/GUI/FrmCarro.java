@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import Encender.Encender;
+import Carro.Encendido;
 
 /**
  *
@@ -13,7 +13,7 @@ import Encender.Encender;
 public class FrmCarro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmCarro.class.getName());
-    private Encender sistema = new Encender();
+    private Encendido sistema = new Encendido();
     /**
      * Creates new form FrmCarro
      */
