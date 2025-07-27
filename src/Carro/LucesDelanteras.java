@@ -8,7 +8,7 @@ package Carro;
  *
  * @author Jorge
  */
-public class LucesDelanteras implements Encender {
+public class LucesDelanteras extends Encendido {
     
     
 }

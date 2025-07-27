@@ -13,7 +13,7 @@ import Carro.Encendido;
 public class FrmCarro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmCarro.class.getName());
-    private Encendido sistema = new Encendido();
+    private Encendido sistema = new Encendido() {};
     /**
      * Creates new form FrmCarro
      */

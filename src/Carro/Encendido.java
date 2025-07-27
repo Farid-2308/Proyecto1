@@ -8,8 +8,8 @@ package Carro;
  *
  * @author Farid
  */
-public class Encendido {
-    private boolean encendido;
+public abstract class Encendido {
+    protected boolean encendido;
     
     public boolean isEncendido() {
     return encendido;
