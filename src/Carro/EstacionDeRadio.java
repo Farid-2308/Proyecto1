@@ -8,38 +8,38 @@ package Carro;
  *
  * @author mathy
  */
-public class EstacionDeRadio {
-    private boolean encendido=true;
+public class EstacionDeRadio extends Encendido{
+    private boolean encendidos=true;
     private Encendido encender;
     private SistemaBateria bateria;
     private AlarmaYBloqueo alarma;
     private ModosRadio modoRadioActual=ModosRadio.FM;
 
-    public boolean isEncendido() {
+    public boolean isEncendidos() {
         return encendido;
     }
     
     public void encenderRadio(){
         if (encender.isEncendido()&&bateria.getNivelBateria()>5&&!alarma.isEstadoAlarmas()) {
-            encendido=true;
+            encendidos=true;
             bateria.consumirBateria();
         }
     }
     
     public void apagadoAutoDeRadio(){
     if (encender.isEncendido()&&(bateria.getNivelBateria()<3||alarma.isEstadoAlarmas())) {
-        encendido = false;
+        encendidos = false;
     }
 }
 
     public void apagarRadio(){
         if (encender.isEncendido()&&bateria.getNivelBateria()>3) {
-            encendido=false;
+            encendidos=false;
         }
     }
     
     public void cambiarEstacion(ModosRadio nuevoModo){
-        if (encendido&&!alarma.isEstadoAlarmas()) {
+        if (encendidos&&!alarma.isEstadoAlarmas()) {
             modoRadioActual=nuevoModo;
             bateria.consumirBateria();
         }

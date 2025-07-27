@@ -8,7 +8,7 @@ package Carro;
  *
  * @author mathy
  */
-public class SistemaBateria {
+public class SistemaBateria extends Encendido{
     private double nivelBateria=100;
     private Encendido carro;
 

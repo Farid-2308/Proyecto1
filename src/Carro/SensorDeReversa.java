@@ -8,9 +8,10 @@ package Carro;
  *
  * @author mathy
  */
-public class SensorDeReversa {
+public class SensorDeReversa extends Encendido{
     private FrenoDeMano freno;
     private SistemaBateria consumo;
+    private Encendido encendido;
     private double distanciaRecorrida=0;
     private int numeroAleatorio;
     
@@ -20,8 +21,8 @@ public class SensorDeReversa {
     }
     
     public void moverseReversa(){
-        if (freno.isFrenoActivo()) {
-            System.out.println("No puede moverse porque el freno esta activado");
+        if (freno.isFrenoActivo()&&!encendido.isEncendido()) {
+            System.out.println("No puede moverse en reversa porque el freno esta activado");
         }
         int distancia=queTanLejosElObstaculo();
         if (distancia<2) {
