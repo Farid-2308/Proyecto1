@@ -9,6 +9,5 @@ package Carro;
  * @author Jorge
  */
 public class LucesDelanteras extends Encendido {
-    
-    
+
 }

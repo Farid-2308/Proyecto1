@@ -13,7 +13,10 @@ public class Cinturon {
     private String ubicacion; 
     private boolean abrochado;
 
-    public void abrochar() {
+    public String getUbicacion() {
+        return ubicacion;
+    }
+        public void abrochar() {
         this.abrochado = true;
     }
     
@@ -23,10 +26,6 @@ public class Cinturon {
 
     public boolean estaAbrochado() {
         return abrochado;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
     }
     
     public Cinturon(String ubicacion) {
@@ -39,4 +38,3 @@ public class Cinturon {
         return ubicacion + ": " + (abrochado ? "Abrochado" : "Desabrochado");
     }
 }
-
