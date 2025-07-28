@@ -73,6 +73,7 @@ public class SistemaIluminacion extends Encendido {
         lucesPuertas = false;
     }
 
+    //metodos para mostrar si estan o no encendidas
     public boolean estanLucesAltas() { return lucesAltas; }
     public boolean estanLucesBajas() { return lucesBajas; }
     public boolean estanIntermitentes() { return intermitentes; }
