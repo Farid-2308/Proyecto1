@@ -10,7 +10,7 @@ import Carro.Encendido;
  *
  * @author Jorge
  */
-public class ControlKilometraje extends Encendido {
+ public class ControlKilometraje extends Encendido {
     private double kilometrosRecorridos;
     private int velocidadActual;
     private int rpm;
