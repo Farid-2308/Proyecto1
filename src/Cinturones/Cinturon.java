@@ -9,32 +9,28 @@ package Cinturones;
  * @author Jorge
  */
 public class Cinturon {
-    
-    private String ubicacion; 
-    private boolean abrochado;
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
+        private TipoCinturon tipo;
+        private boolean abrochado;
+
+        public Cinturon(TipoCinturon tipo) {
+            this.tipo = tipo;
+            this.abrochado = false;
+        }
+
         public void abrochar() {
-        this.abrochado = true;
-    }
-    
-    public void desabrochar() {
-        this.abrochado = false;
-    }
+            abrochado = true;
+        }
 
-    public boolean estaAbrochado() {
-        return abrochado;
-    }
-    
-    public Cinturon(String ubicacion) {
-        this.ubicacion = ubicacion;
-        this.abrochado = false; 
-    }
+        public void desabrochar() {
+            abrochado = false;
+        }
 
-    @Override
-    public String toString() {
-        return ubicacion + ": " + (abrochado ? "Abrochado" : "Desabrochado");
+        public boolean estaAbrochado() {
+            return abrochado;
+        }
+
+        public TipoCinturon getTipo() {
+            return tipo;
+        }
     }
-}

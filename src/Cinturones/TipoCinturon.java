@@ -8,10 +8,9 @@ package Cinturones;
  *
  * @author Jorge
  */
-public enum PosicionAsientos {
-    CINTURON1,
-    CINTURON2,
-    CINTURON3,
-    CINTURON4,
-    CINTURON5
+public enum TipoCinturon {
+   CONDUCTOR,
+    PASAJERO_DELANTERO,
+    TRASERO_IZQUIERDO,
+    TRASERO_DERECHO
 }
