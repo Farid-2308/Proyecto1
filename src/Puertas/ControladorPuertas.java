@@ -4,6 +4,8 @@
  */
 package Puertas;
 
+import Luces.SistemaIluminacion;
+
 /**
  *
  * @author Farid
@@ -13,8 +15,10 @@ public class ControladorPuertas {
    private Puerta delanteraDerecha;
    private Puerta traseraIzquierda;
    private Puerta traseraDerecha;
-
+   private SistemaIluminacion sistemaIluminacion = new SistemaIluminacion();
+   
     public ControladorPuertas() {
+        
         delanteraIzquierda = new Puerta (tipoPuerta.DELANTERA_IZQUIERDA);
         delanteraDerecha = new Puerta(tipoPuerta.DELANTERA_DERECHA);
         traseraIzquierda = new Puerta(tipoPuerta.TRASERA_IZQUIERDA);
@@ -22,6 +26,7 @@ public class ControladorPuertas {
     }
 
     public void abrirPuerta(tipoPuerta tipo) {
+        sistemaIluminacion.activarLucesPuertas();
         Puerta puerta = getPuertaPorTipo(tipo);
         if (puerta != null) {
             puerta.abrir();
@@ -29,6 +34,7 @@ public class ControladorPuertas {
     }
 
     public void cerrarPuerta(tipoPuerta tipo) {
+         sistemaIluminacion.desactivarLucesPuertas();
         Puerta puerta = getPuertaPorTipo(tipo);
         if (puerta != null) {
             puerta.cerrar();

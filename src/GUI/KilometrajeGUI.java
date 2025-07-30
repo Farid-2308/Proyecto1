@@ -11,6 +11,7 @@ import Luces.SistemaIluminacion;
  *
  * @author Jorge
  */
+
 public class KilometrajeGUI extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KilometrajeGUI.class.getName());
@@ -34,31 +35,23 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         lblEstadoEncendido = new javax.swing.JLabel();
-        btnEncender = new javax.swing.JButton();
         spnVelocidad = new javax.swing.JSpinner();
         lblVelocidad = new javax.swing.JLabel();
         lblKilometros = new javax.swing.JLabel();
         lblRPM = new javax.swing.JLabel();
         btnActualizarKilometraje = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
-        rbtnLucesAltas = new javax.swing.JRadioButton();
         chkIntermitentes = new javax.swing.JCheckBox();
         chkLucesPuertas = new javax.swing.JCheckBox();
         chkEmergencia = new javax.swing.JCheckBox();
-        rbtnLucesBajas = new javax.swing.JRadioButton();
+        chkLucesAltas = new javax.swing.JCheckBox();
+        chkLucesBajas = new javax.swing.JCheckBox();
+        btnEncender = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblEstadoEncendido.setText("Estado Apagado");
-
-        btnEncender.setText("Encender\\Apagar");
-        btnEncender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEncenderActionPerformed(evt);
-            }
-        });
+        lblEstadoEncendido.setText("Estado: Apagado");
 
         lblVelocidad.setText("Velocidad actual");
 
@@ -74,14 +67,6 @@ public class KilometrajeGUI extends javax.swing.JFrame {
         });
 
         jPanel1.setToolTipText("");
-
-        buttonGroup1.add(rbtnLucesAltas);
-        rbtnLucesAltas.setText("Luces Altas");
-        rbtnLucesAltas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnLucesAltasActionPerformed(evt);
-            }
-        });
 
         chkIntermitentes.setText("Luces Intermitentes");
         chkIntermitentes.addActionListener(new java.awt.event.ActionListener() {
@@ -104,11 +89,17 @@ public class KilometrajeGUI extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(rbtnLucesBajas);
-        rbtnLucesBajas.setText("Luces Bajas");
-        rbtnLucesBajas.addActionListener(new java.awt.event.ActionListener() {
+        chkLucesAltas.setText("Luces Altas");
+        chkLucesAltas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnLucesBajasActionPerformed(evt);
+                chkLucesAltasActionPerformed(evt);
+            }
+        });
+
+        chkLucesBajas.setText("Luces Bajas");
+        chkLucesBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLucesBajasActionPerformed(evt);
             }
         });
 
@@ -117,28 +108,28 @@ public class KilometrajeGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnLucesAltas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkIntermitentes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnLucesBajas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkEmergencia))
-                .addGap(58, 58, 58))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(chkLucesPuertas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkIntermitentes)
+                    .addComponent(chkLucesAltas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkEmergencia)
+                    .addComponent(chkLucesBajas))
+                .addGap(58, 58, 58))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnLucesAltas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbtnLucesBajas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                    .addComponent(chkLucesAltas)
+                    .addComponent(chkLucesBajas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkEmergencia, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(chkIntermitentes, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -147,34 +138,41 @@ public class KilometrajeGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
+        btnEncender.setText("Estado: Apagado");
+        btnEncender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEncenderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEstadoEncendido, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEncender))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEstadoEncendido, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblVelocidad)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblKilometros, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(lblRPM, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(lblRPM, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnActualizarKilometraje)
                                 .addGap(56, 56, 56)
                                 .addComponent(spnVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGap(0, 3, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(111, 111, 111))))
+                        .addGap(111, 111, 111))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnEncender)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,26 +209,6 @@ public class KilometrajeGUI extends javax.swing.JFrame {
         lblKilometros.setText("Distancia: " + controlKilometraje.getKilometrosRecorridos() + " km");
     }//GEN-LAST:event_btnActualizarKilometrajeActionPerformed
 
-    private void btnEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderActionPerformed
-        if (btnEncender.isSelected()) {
-            btnEncender.setText("Apagar vehículo");
-            lblEstadoEncendido.setText("Estado: Encendido");
-            // Aquí puedes encender tus subsistemas
-            // sistemaIluminacion.encender();
-        } else {
-            btnEncender.setText("Encender vehículo");
-            lblEstadoEncendido.setText("Estado: Apagado");
-            // sistemaIluminacion.apagar();
-        }
-
-    }//GEN-LAST:event_btnEncenderActionPerformed
-
-    private void rbtnLucesAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnLucesAltasActionPerformed
-        if (rbtnLucesAltas.isSelected()) {
-            sistemaIluminacion.encenderLucesAltas();
-        }
-    }//GEN-LAST:event_rbtnLucesAltasActionPerformed
-
     private void chkIntermitentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkIntermitentesActionPerformed
         if (chkIntermitentes.isSelected()) {
             sistemaIluminacion.activarIntermitentes();
@@ -238,12 +216,6 @@ public class KilometrajeGUI extends javax.swing.JFrame {
             sistemaIluminacion.desactivarIntermitentes();
         }
     }//GEN-LAST:event_chkIntermitentesActionPerformed
-
-    private void rbtnLucesBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnLucesBajasActionPerformed
-        if (rbtnLucesBajas.isSelected()) {
-            sistemaIluminacion.encenderLucesBajas();
-        }
-    }//GEN-LAST:event_rbtnLucesBajasActionPerformed
 
     private void chkLucesPuertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLucesPuertasActionPerformed
         if (chkLucesPuertas.isSelected()) {
@@ -257,45 +229,72 @@ public class KilometrajeGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chkEmergenciaActionPerformed
 
+    private void btnEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderActionPerformed
+      if (btnEncender.isSelected()) {
+        btnEncender.setText("Apagar vehículo");
+        lblEstadoEncendido.setText("Estado: Encendido");
+    } else {
+        btnEncender.setText("Encender vehículo");
+        lblEstadoEncendido.setText("Estado: Apagado");
+    }
+    }//GEN-LAST:event_btnEncenderActionPerformed
+
+    private void chkLucesAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLucesAltasActionPerformed
+       if (chkLucesAltas.isSelected()) {
+        chkLucesBajas.setSelected(false);
+        sistemaIluminacion.encenderLucesAltas();
+    } else {
+        sistemaIluminacion.apagarLucesDelanteras();
+    }
+    }//GEN-LAST:event_chkLucesAltasActionPerformed
+
+    private void chkLucesBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLucesBajasActionPerformed
+   if (chkLucesBajas.isSelected()) {
+        chkLucesAltas.setSelected(false);
+        sistemaIluminacion.encenderLucesBajas();
+    } else {
+        sistemaIluminacion.apagarLucesDelanteras();
+    }
+    }//GEN-LAST:event_chkLucesBajasActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new KilometrajeGUI().setVisible(true));
+    } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+        logger.log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> new KilometrajeGUI().setVisible(true));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnActualizarKilometraje;
-    private javax.swing.JButton btnEncender;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JToggleButton btnEncender;
     private javax.swing.JCheckBox chkEmergencia;
     private javax.swing.JCheckBox chkIntermitentes;
+    private javax.swing.JCheckBox chkLucesAltas;
+    private javax.swing.JCheckBox chkLucesBajas;
     private javax.swing.JCheckBox chkLucesPuertas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEstadoEncendido;
     private javax.swing.JLabel lblKilometros;
     private javax.swing.JLabel lblRPM;
     private javax.swing.JLabel lblVelocidad;
-    private javax.swing.JRadioButton rbtnLucesAltas;
-    private javax.swing.JRadioButton rbtnLucesBajas;
     private javax.swing.JSpinner spnVelocidad;
     // End of variables declaration//GEN-END:variables
 }
