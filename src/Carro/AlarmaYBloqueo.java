@@ -17,7 +17,7 @@ public class AlarmaYBloqueo {
         return estadoAlarmas;
     }
 
-    public boolean isBloquearPuertas() {
+    public boolean isPuertaBloqueada() {
         return puertaBloqueada;
     }
     
