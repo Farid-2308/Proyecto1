@@ -457,6 +457,8 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReversaActionPerformed
 
+    
+    
     private void btnFrenarReversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenarReversaActionPerformed
         if (sensor.moverseReversa().contains("")&&!freno.isFrenoActivo()) {
             lblSensor.setText("Ha Frenado");
@@ -517,7 +519,6 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         timerBateria.start();
     }
 }
-    
 
 private void iniciarCargaBateriaContinuo() {
     // Si ya está cargando, no reiniciamos
