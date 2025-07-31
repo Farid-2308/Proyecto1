@@ -474,8 +474,8 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnDetenerCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerCargaActionPerformed
-        if (timerBateria != null && timerBateria.isRunning()) {
-            timerBateria.stop();
+        if (timerCargaBateria != null && timerCargaBateria.isRunning()) {
+            timerCargaBateria.stop();
         }
 
     }//GEN-LAST:event_btnDetenerCargaActionPerformed

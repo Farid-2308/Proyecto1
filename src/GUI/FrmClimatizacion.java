@@ -4,8 +4,10 @@
  */
 package GUI;
 
+import Carro.SistemaBateria;
 import Climatizacion.Climatizacion;
 import Climatizacion.VelocidadAbanico;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,7 +17,9 @@ public class FrmClimatizacion extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClimatizacion.class.getName());
         private Climatizacion climatizacion = new Climatizacion();
-
+        private Timer timerBateria;
+        private Timer timerCargaBateria;
+        private SistemaBateria bateria = new SistemaBateria();
     /**
      * Creates new form FrmClimatizacion
      */
@@ -44,6 +48,10 @@ public class FrmClimatizacion extends javax.swing.JFrame {
         btnVelocidadAlta = new javax.swing.JButton();
         btnVelocidadBaja = new javax.swing.JButton();
         btnVelocidadMedia = new javax.swing.JButton();
+        btnParar = new javax.swing.JButton();
+        progressBarNivelBateria = new javax.swing.JProgressBar();
+        lblEstadoBateria = new javax.swing.JLabel();
+        btnCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,6 +142,29 @@ public class FrmClimatizacion extends javax.swing.JFrame {
             }
         });
 
+        btnParar.setText("Parar");
+        btnParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPararActionPerformed(evt);
+            }
+        });
+
+        progressBarNivelBateria.setForeground(new java.awt.Color(255, 153, 0));
+        progressBarNivelBateria.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                progressBarNivelBateriaStateChanged(evt);
+            }
+        });
+
+        lblEstadoBateria.setText("Estado de Bateria");
+
+        btnCargar.setText("Cargar");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,7 +192,17 @@ public class FrmClimatizacion extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnCargar)
+                                        .addGap(70, 70, 70)
+                                        .addComponent(btnParar))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblEstadoBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(66, 66, 66))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnVelocidadBaja)))
@@ -199,9 +240,18 @@ public class FrmClimatizacion extends javax.swing.JFrame {
                     .addComponent(btnVelocidadMedia))
                 .addGap(18, 18, 18)
                 .addComponent(btnVelocidadBaja)
-                .addGap(61, 61, 61)
-                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCargar)
+                            .addComponent(btnParar))
+                        .addGap(18, 18, 18)
+                        .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblEstadoBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,6 +266,7 @@ public class FrmClimatizacion extends javax.swing.JFrame {
             lblEstado.setText("Calefacción Activada");
         } else {
             lblEstado.setText("Sistema Apagado");
+            
         }
 }
     
@@ -229,21 +280,25 @@ public class FrmClimatizacion extends javax.swing.JFrame {
     private void btnEncenderACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderACActionPerformed
         climatizacion.encenderAireAcondicionado();
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnEncenderACActionPerformed
 
     private void btnEncenderCalefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderCalefActionPerformed
        climatizacion.encenderCalefaccion();
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnEncenderCalefActionPerformed
 
     private void btnVelocidadMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVelocidadMediaActionPerformed
         climatizacion.setVelocidadVentilador(VelocidadAbanico.MEDIA);
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnVelocidadMediaActionPerformed
 
     private void btnVelocidadAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVelocidadAltaActionPerformed
         climatizacion.setVelocidadVentilador(VelocidadAbanico.ALTA);
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnVelocidadAltaActionPerformed
 
     private void btnSubirTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirTempActionPerformed
@@ -256,12 +311,69 @@ public class FrmClimatizacion extends javax.swing.JFrame {
         climatizacion.apagarCalefaccion();
         climatizacion.setVelocidadVentilador(VelocidadAbanico.APAGADO);
         actualizarInterfaz();
+        timerBateria.stop();
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnVelocidadBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVelocidadBajaActionPerformed
         climatizacion.setVelocidadVentilador(VelocidadAbanico.BAJA);
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnVelocidadBajaActionPerformed
+
+    private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
+        if (timerCargaBateria != null && timerCargaBateria.isRunning()) {
+            timerCargaBateria.stop();
+        }
+    }//GEN-LAST:event_btnPararActionPerformed
+
+    private void progressBarNivelBateriaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_progressBarNivelBateriaStateChanged
+
+    }//GEN-LAST:event_progressBarNivelBateriaStateChanged
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        if (timerBateria != null && timerBateria.isRunning()) {
+            timerBateria.stop();
+        }
+        iniciarCargaBateriaContinuo();
+    }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void actualizarEstadoBateria() {
+        int nivel = (int) bateria.getNivelBateria();
+        progressBarNivelBateria.setValue(nivel);
+        lblEstadoBateria.setText(bateria.estadoBateria());
+    }
+    
+     private void iniciarCargaBateriaContinuo() {
+        if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
+            timerCargaBateria = new javax.swing.Timer(1000, e -> {
+                bateria.cargarBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() >= 100) {
+                    bateria.cargarBateria();
+                    actualizarEstadoBateria();
+                    timerCargaBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Bateria completamente cargada");
+                }
+            });
+            timerCargaBateria.start();
+        }
+    }
+
+      protected void iniciarConsumoBateriaContinuo() {
+        if (timerBateria == null || !timerBateria.isRunning()) {
+            timerBateria = new javax.swing.Timer(1000, e -> {
+                bateria.consumirBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() <= 0) {
+                    timerBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
+                }
+            });
+            timerBateria.start();
+        }
+    }
 
 
     /**
@@ -292,15 +404,19 @@ public class FrmClimatizacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnBajarTemp;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnEncenderAC;
     private javax.swing.JButton btnEncenderCalef;
+    private javax.swing.JButton btnParar;
     private javax.swing.JButton btnSubirTemp;
     private javax.swing.JButton btnVelocidadAlta;
     private javax.swing.JButton btnVelocidadBaja;
     private javax.swing.JButton btnVelocidadMedia;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblEstadoBateria;
     private javax.swing.JLabel lblTemperatura;
     private javax.swing.JLabel lblVelocidad;
+    private javax.swing.JProgressBar progressBarNivelBateria;
     // End of variables declaration//GEN-END:variables
 
 }

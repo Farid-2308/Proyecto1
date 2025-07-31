@@ -4,8 +4,10 @@
  */
 package GUI;
 
+import Carro.SistemaBateria;
 import Escobillas.Escobilla;
 import Escobillas.Velocidades;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,6 +17,10 @@ public class FrmEscobillas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmEscobillas.class.getName());
         private Escobilla escobilla = new Escobilla();
+        private Timer timerBateria;
+        private Timer timerCargaBateria;
+        private SistemaBateria bateria = new SistemaBateria();
+        
     /**
      * Creates new form FrmEscobillas
      */
@@ -43,6 +49,10 @@ public class FrmEscobillas extends javax.swing.JFrame {
         btnBaja = new javax.swing.JButton();
         lblParabrisas = new javax.swing.JLabel();
         lblEscobillas = new javax.swing.JLabel();
+        btnParar = new javax.swing.JButton();
+        progressBarNivelBateria = new javax.swing.JProgressBar();
+        lblEstadoBateria = new javax.swing.JLabel();
+        btnCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,53 +111,105 @@ public class FrmEscobillas extends javax.swing.JFrame {
 
         lblEscobillas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Escobillas.jpg"))); // NOI18N
 
+        btnParar.setText("Parar");
+        btnParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPararActionPerformed(evt);
+            }
+        });
+
+        progressBarNivelBateria.setForeground(new java.awt.Color(255, 153, 0));
+        progressBarNivelBateria.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                progressBarNivelBateriaStateChanged(evt);
+            }
+        });
+
+        lblEstadoBateria.setText("Estado de Bateria");
+
+        btnCargar.setText("Cargar");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnEncender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAlta)
-                    .addComponent(lblVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMedia)
-                    .addComponent(btnBaja))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEncender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnApagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAlta)
+                            .addComponent(lblVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMedia)
+                            .addComponent(btnBaja))
+                        .addGap(0, 333, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCargar)
+                                .addGap(70, 70, 70)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnParar)
+                            .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEstadoBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblVelocidad, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(btnEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(btnAlta)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnMedia)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBaja)))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblVelocidad, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(btnEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(btnAlta)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnMedia)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBaja)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCargar)
+                            .addComponent(btnParar))
+                        .addGap(18, 18, 18)))
+                .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(lblEstadoBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -169,11 +231,13 @@ private void actualizarInterfaz() {
     private void btnEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderActionPerformed
         escobilla.encender(Velocidades.BAJA);
         actualizarInterfaz();
+        iniciarConsumoBateriaContinuo();
     }//GEN-LAST:event_btnEncenderActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
         escobilla.apagar();
         actualizarInterfaz();
+        timerBateria.stop();
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
@@ -191,7 +255,60 @@ private void actualizarInterfaz() {
         actualizarInterfaz();
     }//GEN-LAST:event_btnBajaActionPerformed
 
+    private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
+        if (timerCargaBateria != null && timerCargaBateria.isRunning()) {
+            timerCargaBateria.stop();
+        }
+    }//GEN-LAST:event_btnPararActionPerformed
 
+    private void progressBarNivelBateriaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_progressBarNivelBateriaStateChanged
+
+    }//GEN-LAST:event_progressBarNivelBateriaStateChanged
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        if (timerBateria != null && timerBateria.isRunning()) {
+            timerBateria.stop();
+        }
+        iniciarCargaBateriaContinuo();
+    }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void actualizarEstadoBateria() {
+        int nivel = (int) bateria.getNivelBateria();
+        progressBarNivelBateria.setValue(nivel);
+        lblEstadoBateria.setText(bateria.estadoBateria());
+    }
+    
+     private void iniciarCargaBateriaContinuo() {
+        if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
+            timerCargaBateria = new javax.swing.Timer(1000, e -> {
+                bateria.cargarBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() >= 100) {
+                    bateria.cargarBateria();
+                    actualizarEstadoBateria();
+                    timerCargaBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Bateria completamente cargada");
+                }
+            });
+            timerCargaBateria.start();
+        }
+    }
+
+      protected void iniciarConsumoBateriaContinuo() {
+        if (timerBateria == null || !timerBateria.isRunning()) {
+            timerBateria = new javax.swing.Timer(1000, e -> {
+                bateria.consumirBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() <= 0) {
+                    timerBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
+                }
+            });
+            timerBateria.start();
+        }
+    }
    
     /**
      * @param args the command line arguments
@@ -222,11 +339,15 @@ private void actualizarInterfaz() {
     private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnBaja;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnEncender;
     private javax.swing.JButton btnMedia;
+    private javax.swing.JButton btnParar;
     private javax.swing.JLabel lblEscobillas;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblEstadoBateria;
     private javax.swing.JLabel lblParabrisas;
     private javax.swing.JLabel lblVelocidad;
+    private javax.swing.JProgressBar progressBarNivelBateria;
     // End of variables declaration//GEN-END:variables
 }

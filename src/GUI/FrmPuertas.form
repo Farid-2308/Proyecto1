@@ -36,7 +36,7 @@
                   <Component id="btnDelDer" min="-2" pref="127" max="-2" attributes="0"/>
                   <Component id="lblPuertaDer" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -68,7 +68,7 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="btnSeguroGeneral" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,7 +149,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/imagen nueva.png"/>
+          <Image iconType="3" name="/Imagenes/imagen nueva.png"/>
         </Property>
       </Properties>
     </Component>
@@ -160,7 +160,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/car-door der.png"/>
+          <Image iconType="3" name="/Imagenes/car-door der.png"/>
         </Property>
       </Properties>
     </Component>

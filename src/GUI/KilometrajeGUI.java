@@ -291,7 +291,7 @@ public class KilometrajeGUI extends javax.swing.JFrame {
                     .addComponent(btnParar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblAtrasIzquierdo)
                         .addComponent(lblAtrasDerecho))
                     .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -413,8 +413,8 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
-        if (timerBateria != null && timerBateria.isRunning()) {
-            timerBateria.stop();
+        if (timerCargaBateria != null && timerCargaBateria.isRunning()) {
+            timerCargaBateria.stop();
         }
     }//GEN-LAST:event_btnPararActionPerformed
 

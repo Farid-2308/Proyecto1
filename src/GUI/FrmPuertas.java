@@ -90,11 +90,11 @@ public class FrmPuertas extends javax.swing.JFrame {
 
         lblPuertaIzq.setBackground(new java.awt.Color(255, 255, 0));
         lblPuertaIzq.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPuertaIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/imagen nueva.png"))); // NOI18N
+        lblPuertaIzq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagen nueva.png"))); // NOI18N
 
         lblPuertaDer.setBackground(new java.awt.Color(255, 255, 255));
         lblPuertaDer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPuertaDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/car-door der.png"))); // NOI18N
+        lblPuertaDer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/car-door der.png"))); // NOI18N
 
         btnSeguroGeneral.setBackground(new java.awt.Color(153, 0, 0));
         btnSeguroGeneral.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -121,7 +121,7 @@ public class FrmPuertas extends javax.swing.JFrame {
                     .addComponent(btnTrasDer, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelDer, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPuertaDer))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSeguroGeneral)
@@ -146,7 +146,7 @@ public class FrmPuertas extends javax.swing.JFrame {
                     .addComponent(btnTrasIzq))
                 .addGap(33, 33, 33)
                 .addComponent(btnSeguroGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,6 +228,8 @@ public class FrmPuertas extends javax.swing.JFrame {
     } else {
         sistemaSeguridad.bloquearPuerta();
         btnSeguroGeneral.setText("Desactivar Seguro");
+        lblPuertaIzq.setVisible(false);
+        lblPuertaDer.setVisible(false);
 
         for (tipoPuerta tipo : tipoPuerta.values()) {
             controlador.cerrarPuerta(tipo);
