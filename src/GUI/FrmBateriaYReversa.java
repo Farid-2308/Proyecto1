@@ -8,7 +8,7 @@ import Carro.*;
 import javax.swing.Timer;
 
 public class FrmBateriaYReversa extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBateriaYReversa.class.getName());
     private Encendido encenderCarro;
     private EstacionDeRadio radio = new EstacionDeRadio();
@@ -18,10 +18,11 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     private SensorDeReversa sensor = new SensorDeReversa();
     private SistemaBateria bateria = new SistemaBateria();
     private Timer timerBateria;
-    
+
     public FrmBateriaYReversa() {
         initComponents();
-        encenderCarro = new Encendido() {};
+        encenderCarro = new Encendido() {
+        };
         javax.swing.ButtonGroup grupoBotones = new javax.swing.ButtonGroup();
         grupoBotones.add(btnAM);
         grupoBotones.add(btnFm);
@@ -58,6 +59,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         btnFrenarReversa = new javax.swing.JButton();
         lblEstadoBateria = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,6 +190,8 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("jToggleButton1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,19 +238,21 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                         .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(lblEstadoBateria))
+                        .addComponent(lblEstadoBateria)
+                        .addGap(67, 67, 67)
+                        .addComponent(jToggleButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(btnCargar)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
+                        .addGap(133, 133, 133)
                         .addComponent(lblAlarma)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(190, 190, 190))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                        .addGap(72, 72, 72)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(btnAlarmaActivar)
@@ -309,11 +315,12 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                             .addComponent(lblFrenoDeMano)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnActivarFreno)
-                            .addComponent(btnFrenoDesactivar)
-                            .addComponent(btnReversa)
-                            .addComponent(btnFrenarReversa))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnFrenoDesactivar)
+                                .addComponent(btnReversa)
+                                .addComponent(btnFrenarReversa)))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,7 +329,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                         .addComponent(btnAM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblModoSelec)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(btnCargar)
                         .addGap(6, 6, 6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +339,9 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                             .addComponent(lblSensor))
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblEstadoBateria)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEstadoBateria)
+                            .addComponent(jToggleButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -350,14 +359,14 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAMActionPerformed
 
     private void btnEncenderRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderRadioActionPerformed
-        if (encenderCarro.isEncendido()&&!alarma.isEstadoAlarmas()) {
+        if (encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             radio.encenderRadio();
             iniciarConsumoBateriaContinuo();
         }
     }//GEN-LAST:event_btnEncenderRadioActionPerformed
 
     private void btnEncenderCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderCarroActionPerformed
-        if (!encenderCarro.isEncendido()&&!alarma.isEstadoAlarmas()) {
+        if (!encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             encenderCarro.encender();
             lblEstadoCarro.setText("Carro: Encendido");
             iniciarConsumoBateriaContinuo();
@@ -418,7 +427,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlarmaDesactivaActionPerformed
 
     private void btnActivarFrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarFrenoActionPerformed
-        if (!freno.isFrenoActivo()&&encenderCarro.isEncendido()) {
+        if (!freno.isFrenoActivo() && encenderCarro.isEncendido()) {
             freno.activar();
             lblFreno.setText("Freno de Mano: Activo");
             iniciarConsumoBateriaContinuo();
@@ -426,7 +435,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActivarFrenoActionPerformed
 
     private void btnFrenoDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenoDesactivarActionPerformed
-        if (freno.isFrenoActivo()&&encenderCarro.isEncendido()) {
+        if (freno.isFrenoActivo() && encenderCarro.isEncendido()) {
             freno.desactivar();
             lblFreno.setText("Freno de Mano: Desactivado");
             iniciarConsumoBateriaContinuo();
@@ -434,7 +443,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFrenoDesactivarActionPerformed
 
     private void btnReversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReversaActionPerformed
-        if (encenderCarro.isEncendido()&&!freno.isFrenoActivo()) {
+        if (encenderCarro.isEncendido() && !freno.isFrenoActivo()) {
             String mensaje = sensor.moverseReversa();
             lblSensor.setText(mensaje);
             iniciarConsumoBateriaContinuo();
@@ -442,14 +451,14 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReversaActionPerformed
 
     private void btnFrenarReversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenarReversaActionPerformed
-        if (sensor.moverseReversa().contains("")&&!freno.isFrenoActivo()) {
+        if (sensor.moverseReversa().contains("") && !freno.isFrenoActivo()) {
             lblSensor.setText("Ha Frenado");
             iniciarConsumoBateriaContinuo();
         }
     }//GEN-LAST:event_btnFrenarReversaActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        if (!encenderCarro.isEncendido()&&!alarma.isEstadoAlarmas()) {
+        if (!encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             bateria.cargarBateria();
             actualizarEstadoBateria();
         }
@@ -476,27 +485,27 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FrmBateriaYReversa().setVisible(true));
     }
-    
+
     private void actualizarEstadoBateria() {
         int nivel = (int) bateria.getNivelBateria();
         progressBarNivelBateria.setValue(nivel);
         lblEstadoBateria.setText(bateria.estadoBateria());
     }
-    
-    private void iniciarConsumoBateriaContinuo() {
-    if (timerBateria == null || !timerBateria.isRunning()) {
-        timerBateria = new javax.swing.Timer(1000, e -> {
-            bateria.consumirBateria();
-            actualizarEstadoBateria();
 
-            if (bateria.getNivelBateria() <= 0) {
-                timerBateria.stop();
-                javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
-            }
-        });
-        timerBateria.start();
+    private void iniciarConsumoBateriaContinuo() {
+        if (timerBateria == null || !timerBateria.isRunning()) {
+            timerBateria = new javax.swing.Timer(1000, e -> {
+                bateria.consumirBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() <= 0) {
+                    timerBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
+                }
+            });
+            timerBateria.start();
+        }
     }
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAM;
     private javax.swing.JButton btnActivarFreno;
@@ -515,6 +524,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAlarma;
     private javax.swing.JLabel lblEstadoAlarma;
     private javax.swing.JLabel lblEstadoBateria;

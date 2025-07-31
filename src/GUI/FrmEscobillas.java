@@ -41,8 +41,8 @@ public class FrmEscobillas extends javax.swing.JFrame {
         btnAlta = new javax.swing.JButton();
         btnMedia = new javax.swing.JButton();
         btnBaja = new javax.swing.JButton();
-        lblEscobillas = new javax.swing.JLabel();
         lblParabrisas = new javax.swing.JLabel();
+        lblEscobillas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,13 +97,9 @@ public class FrmEscobillas extends javax.swing.JFrame {
             }
         });
 
-        lblEscobillas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEscobillas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Escobillas.jpg"))); // NOI18N
-        lblEscobillas.setText("jLabel1");
+        lblParabrisas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Parabrisas.jpg"))); // NOI18N
 
-        lblParabrisas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblParabrisas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Parabrisas.jpg"))); // NOI18N
-        lblParabrisas.setText("jLabel1");
+        lblEscobillas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Escobillas.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,20 +117,19 @@ public class FrmEscobillas extends javax.swing.JFrame {
                     .addComponent(lblVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMedia)
                     .addComponent(btnBaja))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEscobillas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblParabrisas, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblVelocidad, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -198,7 +193,7 @@ private void actualizarInterfaz() {
 
      
 
-    
+   
     /**
      * @param args the command line arguments
      */
