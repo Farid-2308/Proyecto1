@@ -11,11 +11,11 @@ import Luces.SistemaIluminacion;
  * @author Farid
  */
 public class ControladorPuertas {
-   private Puerta delanteraIzquierda;
-   private Puerta delanteraDerecha;
-   private Puerta traseraIzquierda;
-   private Puerta traseraDerecha;
-   private SistemaIluminacion sistemaIluminacion = new SistemaIluminacion();
+   public Puerta delanteraIzquierda;
+   public Puerta delanteraDerecha;
+   public Puerta traseraIzquierda;
+   public Puerta traseraDerecha;
+   public SistemaIluminacion sistemaIluminacion = new SistemaIluminacion();
    
     public ControladorPuertas() {
         

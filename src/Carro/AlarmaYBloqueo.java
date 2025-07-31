@@ -30,11 +30,11 @@ public class AlarmaYBloqueo {
     }
     
     public void bloquearPuerta(){
-        this.puertaBloqueada=false;
+        this.puertaBloqueada=true;
     }
     
     public void desbloquearPuerta(){
-        this.puertaBloqueada=true;
+        this.puertaBloqueada=false;
     }
 
     public AlarmaYBloqueo() {

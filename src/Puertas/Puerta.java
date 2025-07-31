@@ -8,7 +8,7 @@ package Puertas;
  *
  * @author Farid
  */
-public class Puerta {
+public class Puerta  {
     private tipoPuerta tipo;
     private boolean abierta; 
     
