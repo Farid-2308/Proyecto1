@@ -18,7 +18,12 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     private SensorDeReversa sensor = new SensorDeReversa();
     private SistemaBateria bateria = new SistemaBateria();
     private Timer timerBateria;
+<<<<<<< HEAD
 
+=======
+    private Timer timerCargaBateria;
+    
+>>>>>>> origin/dev
     public FrmBateriaYReversa() {
         initComponents();
         encenderCarro = new Encendido() {
@@ -59,7 +64,11 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         btnFrenarReversa = new javax.swing.JButton();
         lblEstadoBateria = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
+<<<<<<< HEAD
         jToggleButton1 = new javax.swing.JToggleButton();
+=======
+        btnDetenerCarga = new javax.swing.JButton();
+>>>>>>> origin/dev
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,7 +199,17 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jToggleButton1.setText("jToggleButton1");
+=======
+        btnDetenerCarga.setText("Detener");
+        btnDetenerCarga.setActionCommand("Detener");
+        btnDetenerCarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetenerCargaActionPerformed(evt);
+            }
+        });
+>>>>>>> origin/dev
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,13 +256,20 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(48, 48, 48)
                         .addComponent(lblEstadoBateria)
                         .addGap(67, 67, 67)
                         .addComponent(jToggleButton1))
+=======
+                        .addGap(15, 15, 15)
+                        .addComponent(btnCargar)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnDetenerCarga))
+>>>>>>> origin/dev
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(btnCargar)))
+                        .addGap(59, 59, 59)
+                        .addComponent(lblEstadoBateria)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(133, 133, 133)
@@ -329,8 +355,15 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                         .addComponent(btnAM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblModoSelec)
+<<<<<<< HEAD
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(btnCargar)
+=======
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCargar)
+                            .addComponent(btnDetenerCarga))
+>>>>>>> origin/dev
                         .addGap(6, 6, 6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -339,10 +372,15 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
                             .addComponent(lblSensor))
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEstadoBateria)
                             .addComponent(jToggleButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+=======
+                        .addComponent(lblEstadoBateria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> origin/dev
                         .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -377,6 +415,8 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         if (encenderCarro.isEncendido()) {
             encenderCarro.apagar();
             lblEstadoCarro.setText("Carro: Apagado");
+            lblSensor.setText("Sensor: Apagado");
+            lblModoSelec.setText("Modo actual: Ninguno");
             timerBateria.stop();
         }
     }//GEN-LAST:event_btnApagarCarroActionPerformed
@@ -458,11 +498,21 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFrenarReversaActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+<<<<<<< HEAD
         if (!encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             bateria.cargarBateria();
             actualizarEstadoBateria();
+=======
+        if (timerBateria != null && timerBateria.isRunning()||encenderCarro.isEncendido()||alarma.isEstadoAlarmas()) {
+            timerBateria.stop();
+>>>>>>> origin/dev
         }
+        iniciarCargaBateriaContinuo();
     }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void btnDetenerCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerCargaActionPerformed
+        timerCargaBateria.stop();
+    }//GEN-LAST:event_btnDetenerCargaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -506,6 +556,29 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
             timerBateria.start();
         }
     }
+<<<<<<< HEAD
+=======
+}
+
+private void iniciarCargaBateriaContinuo() {
+    // Si ya está cargando, no reiniciamos
+    if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
+        timerCargaBateria = new javax.swing.Timer(1000, e -> {
+            bateria.cargarBateria(); // sube el nivel
+            actualizarEstadoBateria();
+
+            if (bateria.getNivelBateria() >= 100) {
+                bateria.cargarBateria(); // por si quedó justo
+                actualizarEstadoBateria();
+                timerCargaBateria.stop();
+                javax.swing.JOptionPane.showMessageDialog(this, "Batería completamente cargada");
+            }
+        });
+        timerCargaBateria.start();
+    }
+}
+
+>>>>>>> origin/dev
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAM;
     private javax.swing.JButton btnActivarFreno;
@@ -515,6 +588,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     private javax.swing.JButton btnApagarRadio;
     private javax.swing.JRadioButton btnBluetooth;
     private javax.swing.JButton btnCargar;
+    private javax.swing.JButton btnDetenerCarga;
     private javax.swing.JButton btnEncenderCarro;
     private javax.swing.JButton btnEncenderRadio;
     private javax.swing.JRadioButton btnFm;
