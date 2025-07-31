@@ -191,7 +191,6 @@ private void actualizarInterfaz() {
         actualizarInterfaz();
     }//GEN-LAST:event_btnBajaActionPerformed
 
-     
 
    
     /**
