@@ -22,13 +22,28 @@ import Carro.Encendido;
         rpm = 0;
     }
 
-    public void setVelocidad(int nuevaVelocidad) {
-        if (isEncendido()) {
-            this.velocidadActual = nuevaVelocidad;
-            calcularRPM();
+        public double getKilometrosRecorridos() { 
+            return kilometrosRecorridos; 
         }
+        
+    public int getVelocidadActual() {
+        return velocidadActual; 
     }
-
+    
+    public int getRPM() { 
+        return rpm; 
+    }
+    
+     public void setVelocidad(int velocidad) {
+        this.velocidadActual = velocidad;
+        calcularRPM();
+        actualizarKilometraje();
+    }
+     
+   private void actualizarKilometraje() {
+        kilometrosRecorridos += velocidadActual / 3600.0; //cada seg
+    }
+    
     private void calcularRPM() {
         if (velocidadActual == 0) {
             rpm = 700;  // El ralentí es el régimen mínimo de revoluciones por las que el motor del carro puede estar funcionando sin calarse
@@ -44,7 +59,5 @@ import Carro.Encendido;
         }
     }
 
-    public double getKilometrosRecorridos() { return kilometrosRecorridos; }
-    public int getVelocidadActual() { return velocidadActual; }
-    public int getRPM() { return rpm; }
+
 }
