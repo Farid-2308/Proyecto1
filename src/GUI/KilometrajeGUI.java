@@ -24,7 +24,8 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     private ControlKilometraje controlKilometraje = new ControlKilometraje();
     private SistemaIluminacion sistemaIluminacion = new SistemaIluminacion();
     private ControladorCinturones controlador = new ControladorCinturones();
-
+    private FrmBateriaYReversa Bateria = new  FrmBateriaYReversa();
+    
     public KilometrajeGUI() {
         initComponents();
     }
@@ -269,10 +270,13 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkIntermitentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkIntermitentesActionPerformed
+
         if (chkIntermitentes.isSelected()) {
+            Bateria.iniciarConsumoBateriaContinuo();
             sistemaIluminacion.activarIntermitentes();
         } else {
             sistemaIluminacion.desactivarIntermitentes();
+            Bateria.apague();
         }
     }//GEN-LAST:event_chkIntermitentesActionPerformed
 

@@ -505,7 +505,11 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         lblEstadoBateria.setText(bateria.estadoBateria());
     }
     
-    private void iniciarConsumoBateriaContinuo() {
+    protected void apague(){
+        timerBateria.stop();
+    }
+    
+    protected void iniciarConsumoBateriaContinuo() {
     if (timerBateria == null || !timerBateria.isRunning()) {
         timerBateria = new javax.swing.Timer(1000, e -> {
             bateria.consumirBateria();
