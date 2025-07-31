@@ -8,22 +8,18 @@ package Carro;
  *
  * @author mathy
  */
-public class SistemaBateria extends Encendido{
+public class SistemaBateria {
     private double nivelBateria=100;
-    private Encendido carro;
 
     public double getNivelBateria() {
         return nivelBateria;
     }
     
     public void consumirBateria(){
-        if (carro.isEncendido()) {
-            nivelBateria = nivelBateria-0.5;
+        nivelBateria = nivelBateria-0.5;
             if (nivelBateria<=0) {
                 nivelBateria=0;
-                carro.apagar();
             }
-        }
     }
     
     public String estadoBateria() {
@@ -41,14 +37,13 @@ public class SistemaBateria extends Encendido{
 }
     
     public void cargarBateria(){
-        if (nivelBateria<100&&!carro.isEncendido()) {
+        if (nivelBateria<100) {
             nivelBateria=nivelBateria+0.5;
         }else if (nivelBateria>=100) {
             nivelBateria=100;
         }
     }
 
-    public SistemaBateria(Encendido carro) {
-        this.carro = carro;
+    public SistemaBateria() {
     }
 }

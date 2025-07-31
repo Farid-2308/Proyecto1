@@ -1,39 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Carro;
 
-/**
- *
- * @author mathy
- */
 public class FrenoDeMano {
-    private boolean frenoActivo=true;
-    private SistemaBateria bateria;
+    private boolean frenoActivo;
 
     public boolean isFrenoActivo() {
         return frenoActivo;
     }
     
     public void activar(){
-        if (bateria.getNivelBateria()>2) {
-            frenoActivo=true;
-            bateria.consumirBateria();
-            System.out.println("Freno de mano activo");
-        }
+        frenoActivo=true;
     }
     
     public void desactivar(){
-        if (bateria.getNivelBateria()>2) {
-            frenoActivo=true;
-            bateria.consumirBateria();
-            System.out.println("Freno de mano desactivado");
-        }
+        frenoActivo=false;
     }
 
-    public FrenoDeMano(SistemaBateria bateria) {
-        this.bateria = bateria;
+    public FrenoDeMano() {
+        this.frenoActivo = false;
     }
-    
+
 }

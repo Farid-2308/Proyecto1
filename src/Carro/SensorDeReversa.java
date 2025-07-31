@@ -4,36 +4,30 @@
  */
 package Carro;
 
-/**
- *
- * @author mathy
- */
-public class SensorDeReversa extends Encendido{
-    private FrenoDeMano freno;
-    private SistemaBateria consumo;
-    private Encendido encendido;
-    private double distanciaRecorrida=0;
+public class SensorDeReversa {
+    private double distanciaRecorrida = 0;
     private int numeroAleatorio;
-    
-    public int queTanLejosElObstaculo(){
+
+    public int queTanLejosElObstaculo() {
         numeroAleatorio = (int)(Math.random() * 10) + 1;
         return numeroAleatorio;
     }
-    
-    public void moverseReversa(){
-        if (freno.isFrenoActivo()&&!encendido.isEncendido()) {
-            System.out.println("No puede moverse en reversa porque el freno esta activado");
-        }
-        int distancia=queTanLejosElObstaculo();
-        if (distancia<2) {
-            System.out.println("Cuidado que hay un obstaculo cerca");
-        }else {
-            distanciaRecorrida+=1;
-            System.out.println("moviendose en reversa");
-            consumo.consumirBateria();
-            if (distanciaRecorrida>=distancia) {
-                System.out.println("Has chocado con el obstaculo");
+
+    public String moverseReversa() {
+        int distancia = queTanLejosElObstaculo();
+        if (distancia < 2) {
+            return "Cuidado, hay un obstáculo muy cerca";
+        } else {
+            distanciaRecorrida += 1;
+            if (distanciaRecorrida >= distancia) {
+                return "Ha chocado con el obstáculo";
+            }else {
+                return "Moviendose en reversa";
             }
         }
     }
+
+    public SensorDeReversa() {
+    }
+    
 }
