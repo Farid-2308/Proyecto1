@@ -17,12 +17,10 @@ public class Escobilla {
 
     public void encender(Velocidades velocidad) {
         this.velocidadActual = Velocidades.BAJA;
-        System.out.println("Escobillas encendidas a " + velocidad.getDescripcion());
     }
 
     public void apagar() {
         this.velocidadActual = null;
-        System.out.println("Escobillas apagadas.");
     }
 
     public boolean estaEncendido() {
@@ -36,9 +34,6 @@ public class Escobilla {
     public void cambiarVelocidad(Velocidades nuevaVelocidad) {
         if (estaEncendido()) {
             this.velocidadActual = nuevaVelocidad;
-            System.out.println("Velocidad cambiada a " + nuevaVelocidad.getDescripcion());
-        } else {
-            System.out.println("No se puede cambiar la velocidad. Las escobillas están apagadas.");
         }
     }
 }
