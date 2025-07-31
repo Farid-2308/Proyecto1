@@ -8,7 +8,7 @@ import Carro.*;
 import javax.swing.Timer;
 
 public class FrmBateriaYReversa extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBateriaYReversa.class.getName());
     private Encendido encenderCarro;
     private EstacionDeRadio radio = new EstacionDeRadio();
@@ -19,10 +19,11 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     private SistemaBateria bateria = new SistemaBateria();
     private Timer timerBateria;
     private Timer timerCargaBateria;
-    
+
     public FrmBateriaYReversa() {
         initComponents();
-        encenderCarro = new Encendido() {};
+        encenderCarro = new Encendido() {
+        };
         javax.swing.ButtonGroup grupoBotones = new javax.swing.ButtonGroup();
         grupoBotones.add(btnAM);
         grupoBotones.add(btnFm);
@@ -364,14 +365,14 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAMActionPerformed
 
     private void btnEncenderRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderRadioActionPerformed
-        if (encenderCarro.isEncendido()&&!alarma.isEstadoAlarmas()) {
+        if (encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             radio.encenderRadio();
             iniciarConsumoBateriaContinuo();
         }
     }//GEN-LAST:event_btnEncenderRadioActionPerformed
 
     private void btnEncenderCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncenderCarroActionPerformed
-        if (!encenderCarro.isEncendido()&&!alarma.isEstadoAlarmas()) {
+        if (!encenderCarro.isEncendido() && !alarma.isEstadoAlarmas()) {
             encenderCarro.encender();
             lblEstadoCarro.setText("Carro: Encendido");
             iniciarConsumoBateriaContinuo();
@@ -434,7 +435,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlarmaDesactivaActionPerformed
 
     private void btnActivarFrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarFrenoActionPerformed
-        if (!freno.isFrenoActivo()&&encenderCarro.isEncendido()) {
+        if (!freno.isFrenoActivo() && encenderCarro.isEncendido()) {
             freno.activar();
             lblFreno.setText("Freno de Mano: Activo");
             iniciarConsumoBateriaContinuo();
@@ -442,7 +443,7 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActivarFrenoActionPerformed
 
     private void btnFrenoDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenoDesactivarActionPerformed
-        if (freno.isFrenoActivo()&&encenderCarro.isEncendido()) {
+        if (freno.isFrenoActivo() && encenderCarro.isEncendido()) {
             freno.desactivar();
             lblFreno.setText("Freno de Mano: Desactivado");
             iniciarConsumoBateriaContinuo();
@@ -450,31 +451,33 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFrenoDesactivarActionPerformed
 
     private void btnReversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReversaActionPerformed
-        if (encenderCarro.isEncendido()&&!freno.isFrenoActivo()) {
+        if (encenderCarro.isEncendido() && !freno.isFrenoActivo()) {
             String mensaje = sensor.moverseReversa();
             lblSensor.setText(mensaje);
             iniciarConsumoBateriaContinuo();
         }
     }//GEN-LAST:event_btnReversaActionPerformed
 
-    
-    
+
     private void btnFrenarReversaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrenarReversaActionPerformed
-        if (sensor.moverseReversa().contains("")&&!freno.isFrenoActivo()) {
+        if (sensor.moverseReversa().contains("") && !freno.isFrenoActivo()) {
             lblSensor.setText("Ha Frenado");
             iniciarConsumoBateriaContinuo();
         }
     }//GEN-LAST:event_btnFrenarReversaActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        if (timerBateria != null && timerBateria.isRunning()||encenderCarro.isEncendido()||alarma.isEstadoAlarmas()) {
+        if (timerBateria != null && timerBateria.isRunning() || encenderCarro.isEncendido() || alarma.isEstadoAlarmas()) {
             timerBateria.stop();
         }
         iniciarCargaBateriaContinuo();
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnDetenerCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerCargaActionPerformed
-        timerCargaBateria.stop();
+        if (timerBateria != null && timerBateria.isRunning()) {
+            timerBateria.stop();
+        }
+
     }//GEN-LAST:event_btnDetenerCargaActionPerformed
 
     public static void main(String args[]) {
@@ -498,49 +501,48 @@ public class FrmBateriaYReversa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FrmBateriaYReversa().setVisible(true));
     }
-    
+
     private void actualizarEstadoBateria() {
         int nivel = (int) bateria.getNivelBateria();
         progressBarNivelBateria.setValue(nivel);
         lblEstadoBateria.setText(bateria.estadoBateria());
     }
-    
-    protected void apague(){
+
+    private void apague() {
         timerBateria.stop();
     }
-    
-    protected void iniciarConsumoBateriaContinuo() {
-    if (timerBateria == null || !timerBateria.isRunning()) {
-        timerBateria = new javax.swing.Timer(1000, e -> {
-            bateria.consumirBateria();
-            actualizarEstadoBateria();
 
-            if (bateria.getNivelBateria() <= 0) {
-                timerBateria.stop();
-                javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
-            }
-        });
-        timerBateria.start();
-    }
-}
-
-private void iniciarCargaBateriaContinuo() {
-    // Si ya está cargando, no reiniciamos
-    if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
-        timerCargaBateria = new javax.swing.Timer(1000, e -> {
-            bateria.cargarBateria(); // sube el nivel
-            actualizarEstadoBateria();
-
-            if (bateria.getNivelBateria() >= 100) {
-                bateria.cargarBateria(); // por si quedó justo
+    private void iniciarConsumoBateriaContinuo() {
+        if (timerBateria == null || !timerBateria.isRunning()) {
+            timerBateria = new javax.swing.Timer(1000, e -> {
+                bateria.consumirBateria();
                 actualizarEstadoBateria();
-                timerCargaBateria.stop();
-                javax.swing.JOptionPane.showMessageDialog(this, "Batería completamente cargada");
-            }
-        });
-        timerCargaBateria.start();
+
+                if (bateria.getNivelBateria() <= 0) {
+                    timerBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
+                }
+            });
+            timerBateria.start();
+        }
     }
-}
+
+    private void iniciarCargaBateriaContinuo() {
+        if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
+            timerCargaBateria = new javax.swing.Timer(1000, e -> {
+                bateria.cargarBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() >= 100) {
+                    bateria.cargarBateria();
+                    actualizarEstadoBateria();
+                    timerCargaBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Bateria completamente cargada");
+                }
+            });
+            timerCargaBateria.start();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnAM;

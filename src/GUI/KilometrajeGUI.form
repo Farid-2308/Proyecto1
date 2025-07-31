@@ -44,8 +44,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnActualizarKilometraje" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                       <Component id="spnVelocidad" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -80,10 +79,25 @@
               </Group>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnPasajeroDelantero" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnPasajeroDelantero" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                      <Component id="btnCargar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btnParar" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="lblPasajeroDelantero" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblAtrasDerecho" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTraseroDerecho" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAtrasDerecho" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTraseroDerecho" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="progressBarNivelBateria" max="32767" attributes="0"/>
+                          <Component id="lblEstadoBateria" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -101,32 +115,39 @@
                           <Component id="lblRPM" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="spnVelocidad" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="btnActualizarKilometraje" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="spnVelocidad" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblConductor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPasajeroDelantero" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnPasajeroDelantero" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConductor" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnPasajeroDelantero" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnConductor" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnCargar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnParar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblAtrasIzquierdo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblAtrasDerecho" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblAtrasIzquierdo" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAtrasDerecho" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="progressBarNivelBateria" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnTraseroIzquierdo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTraseroDerecho" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnTraseroIzquierdo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnTraseroDerecho" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblEstadoBateria" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
@@ -289,12 +310,35 @@
         <Property name="text" type="java.lang.String" value="Estado: Desabrochado "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnActualizarKilometraje">
+    <Component class="javax.swing.JProgressBar" name="progressBarNivelBateria">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actualizar"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="99" red="ff" type="rgb"/>
+        </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarKilometrajeActionPerformed"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="progressBarNivelBateriaStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEstadoBateria">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estado de Bateria"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCargar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cargar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnParar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Parar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPararActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

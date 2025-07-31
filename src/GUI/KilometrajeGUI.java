@@ -4,11 +4,12 @@
  */
 package GUI;
 
-import javax.swing.ImageIcon;
 import Cinturones.TipoCinturon;
 import Cinturones.ControladorCinturones;
 import Kilometraje.ControlKilometraje;
 import Luces.SistemaIluminacion;
+import Carro.*;
+import javax.swing.Timer;
 
 /**
  *
@@ -21,16 +22,19 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     /**
      * Creates new form KilometrajeGUI
      */
+    private Timer timerCargaBateria;
+    private Timer timerKilometraje;
+    private Timer timerBateria;
+    private SistemaBateria bateria = new SistemaBateria();
     private ControlKilometraje controlKilometraje = new ControlKilometraje();
     private SistemaIluminacion sistemaIluminacion = new SistemaIluminacion();
     private ControladorCinturones controlador = new ControladorCinturones();
-    private FrmBateriaYReversa Bateria = new  FrmBateriaYReversa();
-    
+
     public KilometrajeGUI() {
         initComponents();
+        spnVelocidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 300, 1));
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +62,10 @@ public class KilometrajeGUI extends javax.swing.JFrame {
         lblPasajeroDelantero = new javax.swing.JLabel();
         lblAtrasDerecho = new javax.swing.JLabel();
         lblAtrasIzquierdo = new javax.swing.JLabel();
-        btnActualizarKilometraje = new javax.swing.JButton();
+        progressBarNivelBateria = new javax.swing.JProgressBar();
+        lblEstadoBateria = new javax.swing.JLabel();
+        btnCargar = new javax.swing.JButton();
+        btnParar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -184,10 +191,26 @@ public class KilometrajeGUI extends javax.swing.JFrame {
 
         lblAtrasIzquierdo.setText("Estado: Desabrochado ");
 
-        btnActualizarKilometraje.setText("Actualizar");
-        btnActualizarKilometraje.addActionListener(new java.awt.event.ActionListener() {
+        progressBarNivelBateria.setForeground(new java.awt.Color(255, 153, 0));
+        progressBarNivelBateria.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                progressBarNivelBateriaStateChanged(evt);
+            }
+        });
+
+        lblEstadoBateria.setText("Estado de Bateria");
+
+        btnCargar.setText("Cargar");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarKilometrajeActionPerformed(evt);
+                btnCargarActionPerformed(evt);
+            }
+        });
+
+        btnParar.setText("Parar");
+        btnParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPararActionPerformed(evt);
             }
         });
 
@@ -199,8 +222,7 @@ public class KilometrajeGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnActualizarKilometraje)
-                        .addGap(64, 64, 64)
+                        .addGap(147, 147, 147)
                         .addComponent(spnVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblVelocidad)
@@ -226,10 +248,21 @@ public class KilometrajeGUI extends javax.swing.JFrame {
                         .addComponent(lblAtrasIzquierdo)))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPasajeroDelantero)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPasajeroDelantero)
+                        .addGap(197, 197, 197)
+                        .addComponent(btnCargar)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnParar))
                     .addComponent(lblPasajeroDelantero)
-                    .addComponent(lblAtrasDerecho)
-                    .addComponent(btnTraseroDerecho))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAtrasDerecho)
+                            .addComponent(btnTraseroDerecho))
+                        .addGap(182, 182, 182)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEstadoBateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,26 +276,31 @@ public class KilometrajeGUI extends javax.swing.JFrame {
                             .addComponent(lblKilometros, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblRPM, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spnVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizarKilometraje)))
+                        .addComponent(spnVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConductor)
                     .addComponent(lblPasajeroDelantero))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPasajeroDelantero)
-                    .addComponent(btnConductor))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnPasajeroDelantero)
+                        .addComponent(btnConductor))
+                    .addComponent(btnCargar)
+                    .addComponent(btnParar))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAtrasIzquierdo)
-                    .addComponent(lblAtrasDerecho))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblAtrasIzquierdo)
+                        .addComponent(lblAtrasDerecho))
+                    .addComponent(progressBarNivelBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTraseroIzquierdo)
-                    .addComponent(btnTraseroDerecho))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTraseroIzquierdo)
+                        .addComponent(btnTraseroDerecho))
+                    .addComponent(lblEstadoBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -272,34 +310,39 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     private void chkIntermitentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkIntermitentesActionPerformed
 
         if (chkIntermitentes.isSelected()) {
-            Bateria.iniciarConsumoBateriaContinuo();
+            iniciarConsumoBateriaContinuo();
             sistemaIluminacion.activarIntermitentes();
         } else {
             sistemaIluminacion.desactivarIntermitentes();
-            Bateria.apague();
+            timerBateria.stop();
         }
     }//GEN-LAST:event_chkIntermitentesActionPerformed
 
     private void chkEmergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkEmergenciaActionPerformed
         if (chkEmergencia.isSelected()) {
+            iniciarConsumoBateriaContinuo();
             sistemaIluminacion.activarEmergencia();
         }
     }//GEN-LAST:event_chkEmergenciaActionPerformed
 
     private void chkLucesAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLucesAltasActionPerformed
         if (chkLucesAltas.isSelected()) {
+            iniciarConsumoBateriaContinuo();
             chkLucesBajas.setSelected(false);
             sistemaIluminacion.encenderLucesAltas();
         } else {
             sistemaIluminacion.apagarLucesDelanteras();
+            timerBateria.stop();
         }
     }//GEN-LAST:event_chkLucesAltasActionPerformed
 
     private void chkLucesBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLucesBajasActionPerformed
         if (chkLucesBajas.isSelected()) {
+            iniciarConsumoBateriaContinuo();
             chkLucesAltas.setSelected(false);
             sistemaIluminacion.encenderLucesBajas();
         } else {
+            timerBateria.stop();
             sistemaIluminacion.apagarLucesDelanteras();
         }
     }//GEN-LAST:event_chkLucesBajasActionPerformed
@@ -338,20 +381,98 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraseroDerechoActionPerformed
 
     private void spnVelocidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnVelocidadStateChanged
-
         int nuevaVelocidad = (int) spnVelocidad.getValue();
         controlKilometraje.setVelocidad(nuevaVelocidad);
 
+        if (nuevaVelocidad == 0) {
+            timerBateria.stop();
+            detenerTimerKilometraje();
+        } else {
+            iniciarConsumoBateriaContinuo();
+            iniciarTimerKilometraje();
+        }
+
+        controlKilometraje.setVelocidad(nuevaVelocidad);
+
         lblVelocidad.setText(nuevaVelocidad + " km/h");
+
         lblRPM.setText(controlKilometraje.getRPM() + " rpm");
+
         lblKilometros.setText(String.format("%.2f km", controlKilometraje.getKilometrosRecorridos()));
     }//GEN-LAST:event_spnVelocidadStateChanged
 
-    private void btnActualizarKilometrajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarKilometrajeActionPerformed
-        int velocidad = (int) spnVelocidad.getValue();
-        controlKilometraje.setVelocidad(velocidad);
-        controlKilometraje.avanzarTiempo(0.1);
-    }//GEN-LAST:event_btnActualizarKilometrajeActionPerformed
+    private void progressBarNivelBateriaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_progressBarNivelBateriaStateChanged
+
+    }//GEN-LAST:event_progressBarNivelBateriaStateChanged
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        if (timerBateria != null && timerBateria.isRunning()) {
+            timerBateria.stop();
+        }
+        iniciarCargaBateriaContinuo();
+    }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
+        if (timerBateria != null && timerBateria.isRunning()) {
+            timerBateria.stop();
+        }
+    }//GEN-LAST:event_btnPararActionPerformed
+
+    private void iniciarTimerKilometraje() {
+        if (timerKilometraje == null) {
+            timerKilometraje = new Timer(1000, e -> {
+                controlKilometraje.avanzarUnSegundo();
+                lblKilometros.setText(String.format("%.2f km", controlKilometraje.getKilometrosRecorridos()));
+            });
+            timerKilometraje.start();
+        } else if (!timerKilometraje.isRunning()) {
+            timerKilometraje.start();
+        }
+    }
+
+    private void detenerTimerKilometraje() {
+        if (timerKilometraje != null && timerKilometraje.isRunning()) {
+            timerKilometraje.stop();
+        }
+    }
+
+    private void actualizarEstadoBateria() {
+        int nivel = (int) bateria.getNivelBateria();
+        progressBarNivelBateria.setValue(nivel);
+        lblEstadoBateria.setText(bateria.estadoBateria());
+    }
+
+    private void iniciarCargaBateriaContinuo() {
+        if (timerCargaBateria == null || !timerCargaBateria.isRunning()) {
+            timerCargaBateria = new javax.swing.Timer(1000, e -> {
+                bateria.cargarBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() >= 100) {
+                    bateria.cargarBateria();
+                    actualizarEstadoBateria();
+                    timerCargaBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "Bateria completamente cargada");
+                }
+            });
+            timerCargaBateria.start();
+        }
+    }
+
+    protected void iniciarConsumoBateriaContinuo() {
+        if (timerBateria == null || !timerBateria.isRunning()) {
+            timerBateria = new javax.swing.Timer(1000, e -> {
+                bateria.consumirBateria();
+                actualizarEstadoBateria();
+
+                if (bateria.getNivelBateria() <= 0) {
+                    timerBateria.stop();
+                    javax.swing.JOptionPane.showMessageDialog(this, "La bateria se ha agotado");
+                }
+            });
+            timerBateria.start();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -379,8 +500,9 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizarKilometraje;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnConductor;
+    private javax.swing.JButton btnParar;
     private javax.swing.JButton btnPasajeroDelantero;
     private javax.swing.JButton btnTraseroDerecho;
     private javax.swing.JButton btnTraseroIzquierdo;
@@ -393,10 +515,12 @@ public class KilometrajeGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtrasDerecho;
     private javax.swing.JLabel lblAtrasIzquierdo;
     private javax.swing.JLabel lblConductor;
+    private javax.swing.JLabel lblEstadoBateria;
     private javax.swing.JLabel lblKilometros;
     private javax.swing.JLabel lblPasajeroDelantero;
     private javax.swing.JLabel lblRPM;
     private javax.swing.JLabel lblVelocidad;
+    private javax.swing.JProgressBar progressBarNivelBateria;
     private javax.swing.JSpinner spnVelocidad;
     // End of variables declaration//GEN-END:variables
 }
