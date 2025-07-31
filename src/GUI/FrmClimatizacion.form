@@ -37,7 +37,7 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                       <Component id="btnEncenderCalef" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="127" max="32767" attributes="0"/>
                                       <Component id="btnVelocidadMedia" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -62,9 +62,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblTemperatura" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                      <Component id="lblEstado" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="lblEstado" min="-2" pref="168" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="lblVelocidad" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -124,6 +124,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstado">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="ESTADO"/>
       </Properties>
     </Component>

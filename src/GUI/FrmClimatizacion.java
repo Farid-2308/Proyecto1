@@ -51,6 +51,7 @@ public class FrmClimatizacion extends javax.swing.JFrame {
 
         lblVelocidad.setText("VELOCIDAD");
 
+        lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEstado.setText("ESTADO");
 
         btnSubirTemp.setBackground(new java.awt.Color(51, 51, 255));
@@ -150,7 +151,7 @@ public class FrmClimatizacion extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(86, 86, 86)
                                         .addComponent(btnEncenderCalef)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                                         .addComponent(btnVelocidadMedia))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(94, 94, 94)
@@ -167,9 +168,9 @@ public class FrmClimatizacion extends javax.swing.JFrame {
                         .addGap(46, 46, 46))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
-                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)
+                        .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
